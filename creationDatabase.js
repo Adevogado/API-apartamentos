@@ -1,4 +1,4 @@
-// GERAR BANCO DE DADOS
+// JS USADO PARA SE CONECTAR COM O BANCO DE DADOS
 
 /*
   O banco de dados foi escrito em mysql
