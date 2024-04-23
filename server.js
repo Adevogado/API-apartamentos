@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const mysql = require("mysql");
 
 // Aumentar o limite de tamanho do payload para 15MB (ou o tamanho que você desejar)
-app.use(bodyParser.json({ limit: "10mb" }));
+app.use(bodyParser.json({ limit: "15mb" }));
 
 app.use(cors());
 
@@ -105,6 +105,52 @@ app.post("/apartamentos", (req, res) => {
       novoApartamento.fotos = JSON.parse(novoApartamento.fotos);
 
       res.status(201).json(novoApartamento);
+    }
+  );
+});
+
+app.put("/apartamentos/:id", (req, res) => {
+  const apartamentoId = req.params.id;
+  const dadosAtualizados = req.body;
+
+  // Converter o array de fotos em formato JSON antes de inserir no banco de dados
+  dadosAtualizados.fotos = JSON.stringify(dadosAtualizados.fotos);
+
+  // Consulta SQL para atualizar o apartamento pelo ID
+  const query = `
+    UPDATE apartamentos
+    SET nome = ?, preco = ?, regiao = ?, tamanho = ?, endereco = ?, quartos = ?, banheiros = ?, contato = ?, fotos = ?
+    WHERE id = ?
+  `;
+
+  // Executa a consulta com os valores atualizados e o ID do apartamento
+  db.query(
+    query,
+    [
+      dadosAtualizados.nome,
+      dadosAtualizados.preco,
+      dadosAtualizados.regiao,
+      dadosAtualizados.tamanho,
+      dadosAtualizados.endereco,
+      dadosAtualizados.quartos,
+      dadosAtualizados.banheiros,
+      dadosAtualizados.contato,
+      dadosAtualizados.fotos,
+      apartamentoId,
+    ],
+    (err, result) => {
+      if (err) {
+        console.error("Erro ao atualizar apartamento:", err);
+        res.status(500).send("Erro interno do servidor");
+        return;
+      }
+
+      if (result.affectedRows === 0) {
+        // Se nenhum apartamento foi atualizado (ID não encontrado), enviar uma resposta 404
+        return res.status(404).send("Apartamento não encontrado");
+      }
+
+      res.status(200).send("Apartamento atualizado com sucesso");
     }
   );
 });
