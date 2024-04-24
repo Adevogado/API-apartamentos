@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main # ajuste conforme sua branch principal
+      - develop
 
 jobs:
   build:
