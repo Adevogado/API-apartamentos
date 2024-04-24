@@ -74,10 +74,13 @@ app.get("/apartamentos/:id", async (req, res) => {
 app.post("/apartamentos", async (req, res) => {
   try {
     const novoApartamento = req.body;
-    const apartamentosRef = ref(database, "apartamentos");
-    const novoApartamentoRef = await push(apartamentosRef);
-    await set(novoApartamentoRef, novoApartamento);
-    res.status(201).json({ id: novoApartamentoRef.key, ...novoApartamento });
+    const apartamentoId = novoApartamento.id; // Obtém o ID fornecido no corpo da solicitação
+    const apartamentoRef = child(
+      ref(database),
+      `apartamentos/${apartamentoId}`
+    );
+    await set(apartamentoRef, novoApartamento);
+    res.status(201).json({ id: apartamentoId, ...novoApartamento });
   } catch (error) {
     console.error("Erro ao inserir novo apartamento:", error);
     res.status(500).send("Erro interno do servidor");
