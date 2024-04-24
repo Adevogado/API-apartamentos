@@ -4,7 +4,15 @@ const port = process.env.PORT || 3000;
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const { initializeApp } = require("firebase/app");
-const { getDatabase, ref, child, get } = require("firebase/database");
+const {
+  getDatabase,
+  ref,
+  child,
+  get,
+  set,
+  push,
+  remove,
+} = require("firebase/database");
 
 // Configurações do Firebase
 const firebaseConfig = {
