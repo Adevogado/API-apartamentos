@@ -14,6 +14,12 @@ const {
   remove,
 } = require("firebase/database");
 
+console.log("process:");
+console.log(process);
+
+console.log("process.env:");
+console.log(process.env);
+
 // Configurações do Firebase
 const firebaseConfig = {
   apiKey: process.env.apiKey,
