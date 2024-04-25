@@ -16,14 +16,14 @@ const {
 
 // Configurações do Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyCf6_ujKoemWLteg8akgUY3vFhkiGa4mQE",
-  authDomain: "apartfind-1df62.firebaseapp.com",
-  databaseURL: "https://apartfind-1df62-default-rtdb.firebaseio.com",
-  projectId: "apartfind-1df62",
-  storageBucket: "apartfind-1df62.appspot.com",
-  messagingSenderId: "69937993251",
-  appId: "1:69937993251:web:7d6ba8af6cd53e33258396",
-  measurementId: "G-HNEYBR4247",
+  apiKey: process.env.apiKey,
+  authDomain: process.env.authDomain,
+  databaseURL: process.env.databaseURL,
+  projectId: process.env.projectId,
+  storageBucket: process.env.storageBucket,
+  messagingSenderId: process.env.messagingSenderId,
+  appId: process.env.appId,
+  measurementId: process.env.measurementId,
 };
 
 // Inicializa o Firebase
@@ -131,3 +131,5 @@ app.delete("/apartamentos/:id", async (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
 });
+
+module.exports = app;

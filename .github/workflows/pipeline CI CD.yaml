@@ -18,3 +18,6 @@ jobs:
 
       - name: Start Application
         run: node server.js &
+
+      - name: Jest Test
+        run: npm test &
