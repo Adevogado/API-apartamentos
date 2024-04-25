@@ -14,7 +14,7 @@ const {
   remove,
 } = require("firebase/database");
 
-console.log("process:");
+console.log("log process:");
 console.log(process);
 
 console.log("process.env:");

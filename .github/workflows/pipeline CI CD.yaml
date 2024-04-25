@@ -20,4 +20,4 @@ jobs:
         run: node server.js &
 
       - name: Jest Test
-        run: npm test &
+        run: npm test
