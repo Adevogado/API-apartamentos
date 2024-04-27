@@ -26,7 +26,7 @@ jobs:
           MESSAGINGSENDERID: ${{ secrets.MESSAGINGSENDERID }}
           APPID: ${{ secrets.APPID }}
           MEASUREMENTID: ${{ secrets.MEASUREMENTID }}
-        run: node server.js
+        run: node server.js &
 
   run-tests:
     needs: start-server
@@ -39,4 +39,4 @@ jobs:
         run: npm install
 
       - name: Install dependencies
-        run: npm test
+        run: npm test &
