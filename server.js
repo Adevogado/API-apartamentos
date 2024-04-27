@@ -21,15 +21,26 @@ console.log("process.env:");
 console.log(process.env);
 
 // Configurações do Firebase
+// const firebaseConfig = {
+//   apiKey: process.env.apiKey,
+//   authDomain: process.env.authDomain,
+//   databaseURL: process.env.databaseURL,
+//   projectId: process.env.projectId,
+//   storageBucket: process.env.storageBucket,
+//   messagingSenderId: process.env.messagingSenderId,
+//   appId: process.env.appId,
+//   measurementId: process.env.measurementId,
+// };
+
 const firebaseConfig = {
-  apiKey: process.env.apiKey,
-  authDomain: process.env.authDomain,
-  databaseURL: process.env.databaseURL,
-  projectId: process.env.projectId,
-  storageBucket: process.env.storageBucket,
-  messagingSenderId: process.env.messagingSenderId,
-  appId: process.env.appId,
-  measurementId: process.env.measurementId,
+  apiKey: process.env.APIKEY,
+  authDomain: process.env.AUTHDOMAIN,
+  databaseURL: process.env.DATABASEURL,
+  projectId: process.env.PROJECTID,
+  storageBucket: process.env.STORAGEBUCKET,
+  messagingSenderId: process.env.MESSAGINGSENDERID,
+  appId: process.env.APPID,
+  measurementId: process.env.MEASUREMENTID,
 };
 
 // Inicializa o Firebase
