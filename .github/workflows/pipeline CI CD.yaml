@@ -3,7 +3,7 @@ name: Node.js CI/CD
 on:
   push:
     branches:
-      - main # ajuste conforme sua branch principal
+      - main
       - develop
 
 jobs:
@@ -17,6 +17,15 @@ jobs:
         run: npm install
 
       - name: Start Application
+        env:
+          apiKey: ${{ secrets.apiKey }}
+          authDomain: ${{ secrets.authDomain }}
+          databaseURL: ${{ secrets.databaseURL }}
+          projectId: ${{ secrets.projectId }}
+          storageBucket: ${{ secrets.storageBucket }}
+          messagingSenderId: ${{ secrets.messagingSenderId }}
+          appId: ${{ secrets.appId }}
+          measurementId: ${{ secrets.measurementId }}
         run: node server.js
 
   run-tests:
@@ -27,4 +36,4 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install dependencies
-        run: npm install
+        run: npm test
