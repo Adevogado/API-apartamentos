@@ -1,3 +1,46 @@
+# name: Node.js CI/CD
+
+# on:
+#   push:
+#     branches:
+#       - main
+#       - develop
+
+# jobs:
+#   start-server:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - uses: actions/checkout@v2
+
+#       - name: Install dependencies
+#         run: npm install
+
+#       - name: Start Application
+#         env:
+#           apiKey: ${{ secrets.APIKEY }}
+#           authDomain: ${{ secrets.AUTHDOMAIN }}
+#           databaseURL: ${{ secrets.DATABASEURL }}
+#           projectId: ${{ secrets.PROJECTID }}
+#           storageBucket: ${{ secrets.STORAGEBUCKET }}
+#           messagingSenderId: ${{ secrets.MESSAGINGSENDERID }}
+#           appId: ${{ secrets.APPID }}
+#           measurementId: ${{ secrets.MEASUREMENTID }}
+#         run: node server.js
+
+#   run-tests:
+#     needs: start-server
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - uses: actions/checkout@v2
+
+#       - name: Install dependencies
+#         run: npm install
+
+#       - name: Install dependencies
+#         run: npm test
+
 name: Node.js CI/CD
 
 on:
@@ -16,7 +59,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Start Application
+      - name: Debug environment variables
         env:
           apiKey: ${{ secrets.APIKEY }}
           authDomain: ${{ secrets.AUTHDOMAIN }}
@@ -26,17 +69,7 @@ jobs:
           messagingSenderId: ${{ secrets.MESSAGINGSENDERID }}
           appId: ${{ secrets.APPID }}
           measurementId: ${{ secrets.MEASUREMENTID }}
-        run: node server.js
-
-  run-tests:
-    needs: start-server
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Install dependencies
-        run: npm test
+        run: |
+          echo "APIKEY: $APIKEY"
+          echo "AUTHDOMAIN: $AUTHDOMAIN"
+          # Adicione outros echo para as outras variáveis de ambiente aqui
