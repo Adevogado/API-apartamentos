@@ -70,3 +70,5 @@ jobs:
           echo "APIKEY: $APIKEY"
           echo "AUTHDOMAIN: $AUTHDOMAIN"
           # Adicione outros echo para as outras variáveis de ambiente aqui
+          echo "$GITHUB_REPOSITORY"
+          echo "$GITHUB_REPOSITORY_OWNER"
