@@ -1,46 +1,3 @@
-# name: Node.js CI/CD
-
-# on:
-#   push:
-#     branches:
-#       - main
-#       - develop
-
-# jobs:
-#   start-server:
-#     runs-on: ubuntu-latest
-
-#     steps:
-#       - uses: actions/checkout@v2
-
-#       - name: Install dependencies
-#         run: npm install
-
-#       - name: Start Application
-#         env:
-#           apiKey: ${{ secrets.APIKEY }}
-#           authDomain: ${{ secrets.AUTHDOMAIN }}
-#           databaseURL: ${{ secrets.DATABASEURL }}
-#           projectId: ${{ secrets.PROJECTID }}
-#           storageBucket: ${{ secrets.STORAGEBUCKET }}
-#           messagingSenderId: ${{ secrets.MESSAGINGSENDERID }}
-#           appId: ${{ secrets.APPID }}
-#           measurementId: ${{ secrets.MEASUREMENTID }}
-#         run: node server.js
-
-#   run-tests:
-#     needs: start-server
-#     runs-on: ubuntu-latest
-
-#     steps:
-#       - uses: actions/checkout@v2
-
-#       - name: Install dependencies
-#         run: npm install
-
-#       - name: Install dependencies
-#         run: npm test
-
 name: Node.js CI/CD
 
 on:
@@ -56,19 +13,30 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Debug environment variables
+      - name: Install dependencies
+        run: npm install
+
+      - name: Start Application
         env:
-          apiKey: ${{ secrets.APIKEY }}
-          authDomain: ${{ secrets.AUTHDOMAIN }}
-          databaseURL: ${{ secrets.DATABASEURL }}
-          projectId: ${{ secrets.PROJECTID }}
-          storageBucket: ${{ secrets.STORAGEBUCKET }}
-          messagingSenderId: ${{ secrets.MESSAGINGSENDERID }}
-          appId: ${{ secrets.APPID }}
-          measurementId: ${{ secrets.MEASUREMENTID }}
-        run: |
-          echo "APIKEY: $APIKEY"
-          echo "AUTHDOMAIN: $AUTHDOMAIN"
-          # Adicione outros echo para as outras variáveis de ambiente aqui
-          echo "$GITHUB_REPOSITORY"
-          echo "$GITHUB_REPOSITORY_OWNER"
+          APIKEY: ${{ secrets.APIKEY }}
+          AUTHDOMAIN: ${{ secrets.AUTHDOMAIN }}
+          DATABASEURL: ${{ secrets.DATABASEURL }}
+          PROJECTID: ${{ secrets.PROJECTID }}
+          STORAGEBUCKET: ${{ secrets.STORAGEBUCKET }}
+          MESSAGINGSENDERID: ${{ secrets.MESSAGINGSENDERID }}
+          APPID: ${{ secrets.APPID }}
+          MEASUREMENTID: ${{ secrets.MEASUREMENTID }}
+        run: node server.js
+
+  run-tests:
+    needs: start-server
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install dependencies
+        run: npm test
