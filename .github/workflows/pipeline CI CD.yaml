@@ -26,17 +26,17 @@ jobs:
           MESSAGINGSENDERID: ${{ secrets.MESSAGINGSENDERID }}
           APPID: ${{ secrets.APPID }}
           MEASUREMENTID: ${{ secrets.MEASUREMENTID }}
-        run: echo "meu segredo APIKEY ${{ secrets.APIKEY }}"
+        run: node server.js
 
-  # run-tests:
-  #   needs: start-server
-  #   runs-on: ubuntu-latest
+  run-tests:
+    needs: start-server
+    runs-on: ubuntu-latest
 
-  #   steps:
-  #     - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-  #     - name: Install dependencies
-  #       run: npm install
+      - name: Install dependencies
+        run: npm install
 
-  #     - name: Install dependencies
-  #       run: npm test
+      - name: Install dependencies
+        run: npm test
